@@ -73,6 +73,7 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener{
     Random random = new Random();
 
     double score = 0;
+    double highestScore = 0;
 
 
     FlappyBird(){
@@ -143,9 +144,12 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener{
         g.setFont(new Font("Arial",Font.PLAIN,32));
         if(gameOver){
             g.drawString("Game Over: " + String.valueOf((int)(score)),10,35);
+            g.drawString("Highest Score: " + String.valueOf((int)(highestScore)),10,65);
+
         }
         else{
             g.drawString( String.valueOf((int)(score)), 10 , 35);
+            g.drawString("Highest Score: " + String.valueOf((int)(highestScore)),10,65);
         }
     }
 
@@ -201,6 +205,7 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener{
 
         if(gameOver){
             bird.y = birdy;
+            highestScore = Math.max(score,highestScore);
             velocityY = 0;
             pipes.clear();
             score = 0;
